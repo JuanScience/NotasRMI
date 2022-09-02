@@ -1,14 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interface;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.Map;
 
 /**
  * @authors
  * Ormolgud Gonzalez Cardona
  * Juan Carlos Salazar Muñoz
  */
-public interface NotasInterface {
-    
+public interface NotasInterface extends Remote{
+    public Map generate(int s, int n) throws RemoteException;
 }
