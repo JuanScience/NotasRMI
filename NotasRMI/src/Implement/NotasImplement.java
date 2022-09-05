@@ -6,11 +6,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @authors
- * Ormolgud Gonzalez Cardona
- * Juan Carlos Salazar Muñoz
- */
 public class NotasImplement extends UnicastRemoteObject implements NotasInterface {
     public int students;
     public int notes;
@@ -18,19 +13,15 @@ public class NotasImplement extends UnicastRemoteObject implements NotasInterfac
     public int getStudents() {
         return students;
     }
-
     public void setStudents(int students) {
         this.students = students;
     }
-
     public int getNotes() {
         return notes;
     }
-
     public void setNotes(int notes) {
         this.notes = notes;
     }
-
     public NotasImplement(int students, int notes) throws RemoteException {
         this.students = students;
         this.notes = notes;
@@ -42,14 +33,13 @@ public class NotasImplement extends UnicastRemoteObject implements NotasInterfac
         float matriz[][] = new float[s][n];
         Map<String, Float> answer = new HashMap<String, Float>();
         
-        for (int i = 0; i < s; i++) {
-            
+        for (int i = 0; i < s; i++) {            
             max = 0;
             min = 5;
-            suma = 0;
-            
+            suma = 0;            
             for (int j = 0; j < n; j++) {
-                matriz[i][j] = (float)(Math.random() * 5); 
+                matriz[i][j] 
+                        = (float)(Math.round(Math.random() * 5 * 10.0) / 10.0); 
                 if (matriz[i][j] > max){
                     max = matriz[i][j];
                 }
@@ -58,13 +48,20 @@ public class NotasImplement extends UnicastRemoteObject implements NotasInterfac
                 }
                 suma = suma + matriz[i][j];
             }
-            answer.put("Menor nota estudiante " + String.valueOf(i), min);
-            answer.put("Mayor nota estudiante " + String.valueOf(i), max);
-            answer.put("Promedio notas del grupo " + String.valueOf(i), suma / n);
-            total = total + (suma / n);
+            answer.put("Menor nota estudiante " 
+                    + String.valueOf(i)
+                    , (float) (Math.round(min * 10.0) / 10.0));
+            answer.put("Mayor nota estudiante " 
+                    + String.valueOf(i)
+                    , (float) (Math.round(max * 10.0) / 10.0));
+            answer.put("Promedio notas del grupo " 
+                    + String.valueOf(i)
+                    , (float) (Math.round(suma / n * 10.0) / 10.0));
+            total = (float) (Math.round((total + (suma / n)) * 10.0) / 10.0);
         }
         
-        answer.put("Promedio total notas ", total / s);
+        answer.put("Promedio total notas "
+                , (float) (Math.round(total / s * 10.0) / 10.0));
         
         for (int x = 0; x < matriz.length; x++) {
             System.out.print("|");
@@ -73,8 +70,7 @@ public class NotasImplement extends UnicastRemoteObject implements NotasInterfac
                 if (y!=matriz[x].length-1) System.out.print("\t");
             }
             System.out.println("|");
-        }
-        
+        }        
         return answer;
     }
 }
