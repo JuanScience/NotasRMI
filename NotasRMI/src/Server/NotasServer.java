@@ -4,11 +4,7 @@ import Implement.NotasImplement;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-/**
- * @authors
- * Ormolgud Gonzalez Cardona
- * Juan Carlos Salazar Muñoz
- */
+
 public class NotasServer {
     public static void main (String []args) throws RemoteException{
         Registry reg = LocateRegistry.createRegistry(1099);
